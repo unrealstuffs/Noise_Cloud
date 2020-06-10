@@ -1,11 +1,23 @@
 {
-  "name": "noise_cloud",
-  "version": "1.0.0",
-  "description": "Clone of Soundcloud",
-  "main": "index.js",
-  "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
-  },
-  "author": "Sasha",
-  "license": "ISC"
+    "name": "noise_cloud",
+    "version": "1.0.0",
+    "description": "Clone of Soundcloud",
+    "main": "index.js",
+    "scripts": {
+        "start": "nodemon --exec babel-node src/init.js --delay 2"
+    },
+    "author": "Sasha",
+    "license": "ISC",
+    "devDependencies": {
+        "nodemon": "^2.0.4"
+    },
+    "dependencies": {
+        "@babel/cli": "^7.10.1",
+        "@babel/core": "^7.10.2",
+        "@babel/node": "^7.10.1",
+        "@babel/polyfill": "^7.10.1",
+        "@babel/preset-env": "^7.10.2",
+        "dotenv": "^8.2.0",
+        "express": "^4.17.1"
+    }
 }
