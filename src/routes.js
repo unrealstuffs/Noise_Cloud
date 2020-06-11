@@ -10,7 +10,6 @@ const USERS = "/users";
 const USER_DETAIL = "/:id";
 const EDIT_PROFILE = "/edit-profile";
 const CHANGE_PASSWORD = "/change-password";
-const ME = "/me";
 
 // Tracks routes
 const TRACKS = "/tracks";
@@ -35,7 +34,6 @@ const routes = {
     },
     editProfile: EDIT_PROFILE,
     changePassword: CHANGE_PASSWORD,
-    me: ME,
     tracks: TRACKS,
     upload: UPLOAD,
     trackDetail: (id) => {

@@ -12,7 +12,7 @@ const trackRouter = express.Router();
 
 trackRouter.get(routes.tracks, tracks);
 trackRouter.get(routes.upload, upload);
-trackRouter.get(routes.trackDetail, trackDetail);
+trackRouter.get(routes.trackDetail(), trackDetail);
 trackRouter.get(routes.editTrack, editTrack);
 trackRouter.get(routes.deleteTrack, deleteTrack);
 

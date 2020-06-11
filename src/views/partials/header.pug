@@ -1,0 +1,15 @@
+header.header 
+    .header-column
+        a(href=routes.home).logo Noisecloud
+        form(action="/", method="get")
+                input(type="text", placeholder="Найти автора или песню...", name="term")
+                input(type="submit", value="P")
+    .header-column 
+        .header-menu
+            if !user.isAuthenticated
+                a(href=routes.join).header-item Зарегистрироваться
+                a(href=routes.login).header-item Войти
+            else
+                a(href=`/tracks${routes.upload}`).header-item Загрузить
+                a(href=routes.userDetail(user.id)).header-item Профиль
+                a(href=routes.logout).header-item Выйти
