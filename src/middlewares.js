@@ -1,4 +1,7 @@
+import multer from "multer";
 import routes from "./routes";
+
+const multerTrack = multer({ dest: "uploads/tracks/" });
 
 export const localsMiddleware = (req, res, next) => {
     res.locals.siteName = "NOISECLOUD";
@@ -9,3 +12,5 @@ export const localsMiddleware = (req, res, next) => {
     };
     next();
 };
+
+export const uploadTrack = multerTrack.single("trackFile");

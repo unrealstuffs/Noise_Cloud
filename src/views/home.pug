@@ -4,8 +4,9 @@ block content
     .tracks-home
         .tracks-heading Последние загрузки
         .tracks-list
-            .tracks-item
-                a(href="#")
-                    .track-cover Картинка
-                    .track-title Название
-                    .track-author Автор
+            each item in tracks
+                .tracks-item
+                    a(href=routes.trackDetail(item.id))
+                        .track-cover Картинка
+                        .track-title Название
+                        .track-author Автор
