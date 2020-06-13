@@ -13,4 +13,7 @@ export const localsMiddleware = (req, res, next) => {
     next();
 };
 
-export const uploadTrack = multerTrack.single("trackFile");
+export const uploadTrack = multerTrack.fields([
+    { name: "trackFile" },
+    { name: "trackImage" },
+]);

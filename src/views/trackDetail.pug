@@ -6,10 +6,14 @@ block content
             .track-header-audio
                 .track-header-play
                     button play
-                    .track-header-photo фоточка
+                    .track-header-photo
+                        img(src=`/${track.imageUrl}`, alt="a")
                     .track-header-name Автор
+                    .track-header-title=track.title
                 .track-header-bar бар
                 audio(src=`/${track.fileUrl}`, controls)
         .track-body
-            .track-description Описание
+            .track-edit
+                a(href=routes.editTrack(track.id)) Редактировать
+            .track-description=track.description
             .track-comments Комментарии

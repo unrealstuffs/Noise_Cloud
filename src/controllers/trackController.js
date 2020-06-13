@@ -5,13 +5,25 @@ export const home = async (req, res) => {
     try {
         const tracks = await Track.find({});
         res.render("home", { pageTitle: "Главная", tracks });
+        console.log(tracks);
     } catch (error) {
         console.log(error);
         res.render("home", { pageTitle: "Главная", tracks: [] });
     }
 };
 
-export const search = (req, res) => res.render("search");
+export const search = async (req, res) => {
+    const {
+        query: { term: searchingBy },
+    } = req;
+    let tracks = [];
+    try {
+        tracks = await Track.find({
+            title: { $regex: searchingBy, $options: "i" },
+        });
+    } catch (error) {}
+    res.render("search", { pageTitle: "Поиск", searchingBy, tracks });
+};
 
 export const getUpload = (req, res) => {
     res.render("upload", { pageTitle: "Загрузить" });
@@ -20,10 +32,10 @@ export const getUpload = (req, res) => {
 export const postUpload = async (req, res) => {
     const {
         body: { title, description },
-        file: { path },
     } = req;
     const newTrack = await Track.create({
-        fileUrl: path,
+        fileUrl: req.files.trackFile[0].path,
+        imageUrl: req.files.trackImage[0].path,
         title,
         description,
     });
@@ -38,10 +50,46 @@ export const trackDetail = async (req, res) => {
         const track = await Track.findById(id);
         res.render("trackDetail", { pageTitle: track.title, track });
     } catch (error) {
-        console.log(error);
         res.redirect(routes.home);
     }
 };
 
-export const editTrack = (req, res) => res.send("editTrack");
-export const deleteTrack = (req, res) => res.send("deleteTrack");
+export const getEditTrack = async (req, res) => {
+    const {
+        params: { id },
+    } = req;
+    try {
+        const track = await Track.findById(id);
+        res.render("editTrack", {
+            pageTitle: `Редактирование ${track.title}`,
+            track,
+        });
+    } catch (error) {
+        res.redirect(routes.home);
+    }
+};
+
+export const postEditTrack = async (req, res) => {
+    const {
+        params: { id },
+        body: { title, description },
+    } = req;
+    try {
+        await Track.findOneAndUpdate({ _id: id }, { title, description });
+        res.redirect(routes.trackDetail(id));
+    } catch (error) {
+        res.redirect(routes.home);
+    }
+};
+
+export const deleteTrack = async (req, res) => {
+    const {
+        params: { id },
+    } = req;
+    try {
+        await Track.findOneAndRemove({ _id: id });
+    } catch (error) {
+        console.log(error);
+    }
+    res.redirect(routes.home);
+};

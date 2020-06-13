@@ -4,7 +4,8 @@ import {
     getUpload,
     postUpload,
     trackDetail,
-    editTrack,
+    getEditTrack,
+    postEditTrack,
     deleteTrack,
 } from "../controllers/trackController";
 import { uploadTrack } from "../middlewares";
@@ -13,8 +14,12 @@ const trackRouter = express.Router();
 
 trackRouter.get(routes.upload, getUpload);
 trackRouter.post(routes.upload, uploadTrack, postUpload);
+
 trackRouter.get(routes.trackDetail(), trackDetail);
-trackRouter.get(routes.editTrack, editTrack);
-trackRouter.get(routes.deleteTrack, deleteTrack);
+
+trackRouter.get(routes.editTrack(), getEditTrack);
+trackRouter.post(routes.editTrack(), uploadTrack, postEditTrack);
+
+trackRouter.get(routes.deleteTrack(), deleteTrack);
 
 export default trackRouter;

@@ -5,6 +5,10 @@ const TrackSchema = new mongoose.Schema({
         type: String,
         required: "File URL is required",
     },
+    imageUrl: {
+        type: String,
+        required: "Image URL is required",
+    },
     title: {
         type: String,
         required: "Title is requires",

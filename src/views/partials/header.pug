@@ -1,7 +1,7 @@
 header.header 
     .header-column
         a(href=routes.home).logo Noisecloud
-        form(action="/", method="get")
+        form(action=routes.search, method="get")
                 input(type="text", placeholder="Найти автора или песню...", name="term")
                 input(type="submit", value="P")
     .header-column 

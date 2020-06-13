@@ -2,10 +2,14 @@ extends layouts/main
 
 block content
     .tracks-home
-        .tracks-heading Поиск по:
+        .tracks-heading Поиск по: #{searchingBy}
         .tracks-list
-            .tracks-item
-                a(href="#")
-                    .track-cover Картинка
-                    .track-title Название
-                    .track-author Автор
+            if tracks.length === 0
+                h5 Ничего не найдено
+            else
+                each item in tracks
+                    .tracks-item
+                        a(href=routes.trackDetail(item.id))
+                            .track-cover Картинка
+                            .track-title=item.title
+                            .track-author Автор
