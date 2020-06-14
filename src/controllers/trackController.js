@@ -5,9 +5,7 @@ export const home = async (req, res) => {
     try {
         const tracks = await Track.find({});
         res.render("home", { pageTitle: "Главная", tracks });
-        console.log(tracks);
     } catch (error) {
-        console.log(error);
         res.render("home", { pageTitle: "Главная", tracks: [] });
     }
 };
