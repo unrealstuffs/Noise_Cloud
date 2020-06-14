@@ -42,6 +42,16 @@ const config = {
                     },
                 ]),
             },
+            {
+                test: /\.(ttf|eot|woff|svg|woff2)$/,
+                use: {
+                    loader: "file-loader",
+                    options: {
+                        name: `../assets/fonts/[name].woff2`,
+                        outputPath: "fonts/",
+                    },
+                },
+            },
         ],
     },
     output: {
