@@ -2,9 +2,40 @@ extends layouts/main
 
 block content
     .tracks-home
-        .tracks-heading Последние загрузки
+        .tracks-heading 
+            h1 Последние загрузки
         .tracks-list
             each item in tracks
+                .tracks-item
+                    a(href=routes.trackDetail(item.id))
+                        .track-cover
+                            img(src=`/${item.imageUrl}`, alt=item.title)
+                        .track-title=item.title
+                        .track-author Автор
+                .tracks-item
+                    a(href=routes.trackDetail(item.id))
+                        .track-cover
+                            img(src=`/${item.imageUrl}`, alt=item.title)
+                        .track-title=item.title
+                        .track-author Автор
+                .tracks-item
+                    a(href=routes.trackDetail(item.id))
+                        .track-cover
+                            img(src=`/${item.imageUrl}`, alt=item.title)
+                        .track-title=item.title
+                        .track-author Автор
+                .tracks-item
+                    a(href=routes.trackDetail(item.id))
+                        .track-cover
+                            img(src=`/${item.imageUrl}`, alt=item.title)
+                        .track-title=item.title
+                        .track-author Автор
+                .tracks-item
+                    a(href=routes.trackDetail(item.id))
+                        .track-cover
+                            img(src=`/${item.imageUrl}`, alt=item.title)
+                        .track-title=item.title
+                        .track-author Автор
                 .tracks-item
                     a(href=routes.trackDetail(item.id))
                         .track-cover

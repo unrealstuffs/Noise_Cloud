@@ -1,15 +1,30 @@
 .header
     display: flex
     flex-wrap: nowrap
+    justify-content: space-between
     align-items: center
     background-color: $color-dark
     padding: 10px 30px
+    position: relative
+    .header-menu-toggle
+        display: none
+        outline: none
+        border: none
+        background-color: transparent
+        color: $color-white
+        font-size: 20px
+        border-radius: 5px
+        position: relative
+        z-index: 5
     .logo
         display: inline-block
         color: $color-white
         font-size: 20px
         font-weight: bold
         text-transform: uppercase
+        margin-right: 30px
+        position: relative
+        z-index: 5
         &:hover
             text-decoration: none
     .header-menu
@@ -18,10 +33,9 @@
         flex-grow: 1
         align-items: center
         justify-content: space-between
-        margin-left: 30px
         .search-form
             display: flex
-            flex-wrap: wrap
+            flex-wrap: nowrap
             align-items: stretch
             input, button
                 border-radius: 0
@@ -52,3 +66,34 @@
                 padding: 10px 35px
                 &:hover
                     background-color: lighten($color-primary, 5%)
+
+@media screen and ( max-width: 860px )
+    .header
+        .header-menu
+            background-color: $color-dark
+            position: absolute
+            width: 100%
+            justify-content: center
+            flex-direction: column
+            top: 55px
+            left: 0
+            z-index: 2
+            .search-form
+                margin: 15px 0
+                input
+                    width: 250px
+            .header-nav
+                margin-bottom: 15px
+                flex-direction: column
+                justify-content: center
+                text-align: center
+            &:not(.show)
+                // display: none
+                transform: translateY(-990px)
+                transition: transform .5s
+        .show
+            transform: translateY(0)
+            transition: transform .25s
+        .header-menu-toggle
+            display: block
+

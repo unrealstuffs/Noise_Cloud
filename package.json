@@ -4,7 +4,7 @@
     "description": "Clone of Soundcloud",
     "main": "index.js",
     "scripts": {
-        "dev:server": "nodemon --exec babel-node src/init.js --delay 2 --ignore '.scss' --ignore 'static'",
+        "dev:server": "nodemon --exec babel-node src/init.js --delay 2 --ignore '.scss' --ignore 'static' --ignore 'assets'",
         "dev:assets": "WEBPACK_ENV=development webpack -w",
         "build:assets": "WEBPACK_ENV=production webpack"
     },

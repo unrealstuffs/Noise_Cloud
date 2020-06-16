@@ -47,7 +47,7 @@ const config = {
                 use: {
                     loader: "file-loader",
                     options: {
-                        name: `../assets/fonts/[name].woff2`,
+                        name: `../assets/fonts/[name].[ext]`,
                         outputPath: "fonts/",
                     },
                 },

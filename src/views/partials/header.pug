@@ -1,5 +1,7 @@
 header.header 
     a(href=routes.home).logo Noisecloud
+    button.header-menu-toggle
+        i.fa.fa-bars
     .header-menu
         form(action=routes.search, method="get").search-form
                 input(type="text", placeholder="Найти песню...", name="term")
