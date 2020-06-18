@@ -2,14 +2,19 @@ extends layouts/main
 
 block content
     .tracks-home
-        .tracks-heading Поиск по: #{searchingBy}
-        .tracks-list
-            if tracks.length === 0
-                h5 Ничего не найдено
-            else
-                each item in tracks
-                    .tracks-item
-                        a(href=routes.trackDetail(item.id))
-                            .track-cover Картинка
-                            .track-title=item.title
-                            .track-author Автор
+        .container
+            .tracks-heading 
+                h1 Поиск по: #{searchingBy}
+            .tracks-list
+                .row
+                    if tracks.length === 0
+                        .col-12
+                            h5 Ничего не найдено
+                    else
+                        each item in tracks
+                            .col-lg-2.col-md-3.col-sm-4.col-6
+                                a(href=routes.trackDetail(item.id)).tracks-item
+                                    .track-cover
+                                        img(src=`/${item.imageUrl}`, alt=item.title)
+                                    .track-title=item.title
+                                    .track-author Автор

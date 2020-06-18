@@ -43,12 +43,22 @@ const config = {
                 ]),
             },
             {
-                test: /\.(ttf|eot|woff|svg|woff2)$/,
+                test: /\.(ttf|eot|woff|woff2)$/,
                 use: {
                     loader: "file-loader",
                     options: {
                         name: `../assets/fonts/[name].[ext]`,
                         outputPath: "fonts/",
+                    },
+                },
+            },
+            {
+                test: /\.(png|svg|jpg|gif)$/,
+                use: {
+                    loader: "file-loader",
+                    options: {
+                        name: `../assets/images/[name].[ext]`,
+                        outputPath: "images/",
                     },
                 },
             },

@@ -8,10 +8,9 @@ block content
             .tracks-list
                 .row
                     each item in tracks
-                        .col-md-2
-                            .tracks-item
-                                a(href=routes.trackDetail(item.id))
-                                    .track-cover
-                                        img(src=`/${item.imageUrl}`, alt=item.title)
-                                    .track-title=item.title
-                                    .track-author Автор
+                        .col-lg-2.col-md-3.col-sm-4.col-6
+                            a(href=routes.trackDetail(item.id)).tracks-item
+                                .track-cover
+                                    img(src=`/${item.imageUrl}`, alt=item.title)
+                                .track-title=item.title
+                                .track-author Автор
