@@ -34,3 +34,26 @@ h1, h2, h3, h4, h5, h6
     color: $color-secondary
     margin: 0
     padding: 0
+
+a 
+    &:hover
+        text-decoration: none
+
+.button
+    background-color: $color-primary
+    padding: 15px 35px
+    color: $color-white
+    border: none
+    outline: none
+    font-size: 13px
+    transition: background-color .25s
+    cursor: pointer
+    &:hover
+        background-color: lighten($color-primary, 5%)
+
+.button-danger
+    background-color: red
+    padding: 5px 35px
+    &:hover
+        background-color: lighten(red, 5%)
+        color: $color-white

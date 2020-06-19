@@ -1,15 +1,18 @@
 extends layouts/main
 
 block content
-    .form-container
-        form(action=`/tracks${routes.upload}`, method="post", enctype="multipart/form-data")
-            div.fileUpload
-                label(for="file") Выбрать файл трека
-                input(type="file", id="file", name="trackFile", required=true, accept="audio/*")
-            div.fileUpload
-                label(for="file") Выбрать изображение трека
-                input(type="file", id="file", name="trackImage", required=true, accept=".png, .jpg, .jpeg")
-            input(type="text", placeholder="Название", name="title", required=true)
-            textarea(name="description", placeholder="Описание", required=true)
-            input(type="submit", value="Загрузить")
+    .container
+        .form-container
+            form(action=`/tracks${routes.upload}`, method="post", enctype="multipart/form-data").form-upload
+                .file-upload
+                    label(for="trackFile").button Выберите файл трека
+                    input(type="file", id="trackFile", name="trackFile", required=true, accept="audio/*")
+                    p.file-return
+                .file-upload
+                    label(for="trackImage").button Выберите изображение трека
+                    input(type="file", id="trackImage", name="trackImage", required=true, accept=".png, .jpg, .jpeg")
+                    p.image-return
+                input(type="text", placeholder="Название", name="title", required=true)
+                textarea(name="description", placeholder="Описание", required=true)
+                input(type="submit", value="Загрузить").button
             

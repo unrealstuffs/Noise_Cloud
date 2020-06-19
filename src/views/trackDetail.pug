@@ -3,15 +3,20 @@ extends layouts/main
 block content
     .track-detail
         .track-header
-            .track-header-audio
-                .track-header-play
-                    button play
-                    .track-header-photo
-                        img(src=`/${track.imageUrl}`, alt="a")
-                    .track-header-name Автор
-                    .track-header-title=track.title
-                .track-header-bar бар
-                audio(src=`/${track.fileUrl}`, controls)
+            .container
+                .row
+                    .col-md-9
+                        .track-header-audio
+                            .track-header-controls
+                                button.track-header-play
+                                    i.fa.fa-play
+                                .track-header-meta
+                                    .track-header-title=track.title
+                                    .track-header-name Автор
+                            audio(src=`/${track.fileUrl}`, controls controlsList="nodownload").track-header-player
+                    .col-md-3
+                        .track-header-photo
+                            img(src=`/${track.imageUrl}`, alt="a")
         .track-body
             .track-edit
                 a(href=routes.editTrack(track.id)) Редактировать

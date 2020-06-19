@@ -1,9 +1,10 @@
 extends layouts/main
 
 block content
-    .form-container
-        form(action=routes.editTrack(track.id), method="post")
-            input(type="text", placeholder="Название", name="title", required=true, value=track.title)
-            textarea(name="description", placeholder="Описание", required=true) #{track.description}
-            input(type="submit", value="Обновить")
-        a.button(href=routes.deleteTrack(track.id)) Удалить трек    
+    .container
+        .form-container
+            form(action=routes.editTrack(track.id), method="post")
+                input(type="text", placeholder="Название", name="title", required=true, value=track.title)
+                textarea(name="description", placeholder="Описание", required=true) #{track.description}
+                input(type="submit", value="Обновить").button
+            a.button.button-danger(href=routes.deleteTrack(track.id)) Удалить трек    
