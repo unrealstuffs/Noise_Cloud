@@ -13,7 +13,11 @@ block content
                                 .track-header-meta
                                     .track-header-title=track.title
                                     .track-header-name Автор
-                            audio(src=`/${track.fileUrl}`, controls controlsList="nodownload").track-header-player
+                            audio(src=`/${track.fileUrl}`)
+                            .audio-controls
+                                .audio-controls-curr-time 0:00
+                                input(type="range", min="0", max="100").audio-controls-progress
+                                .audio-controls-duration 0:00
                     .col-md-3
                         .track-header-photo
                             img(src=`/${track.imageUrl}`, alt="a")
