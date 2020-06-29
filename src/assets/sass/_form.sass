@@ -1,0 +1,45 @@
+.form-container
+    background-color: $color-secondary
+    padding: 30px
+    margin: 30px 0
+    text-align: center
+    form
+        display: flex
+        flex-direction: column
+        width: 60%
+        margin: 10px auto 10px
+        input, textarea
+            margin-bottom: 15px
+        input[type="text"], input[type="password"], input[type="email"], textarea
+            padding: 5px 15px
+            border: none
+        input[type="submit"]
+            width: 60%
+            text-align: center
+            margin: 0 auto
+        .file-upload
+            margin-bottom: 15px
+            position: relative
+            display: flex
+            justify-content: center
+            align-items: flex-start
+            flex-direction: column
+        label
+            padding: 14px 35px
+            background: $color-primary
+        input[type="file"]
+            position: absolute
+            top: 0
+            left: 0
+            width: 225px
+            opacity: 0
+            padding: 14px 0
+            cursor: pointer
+        p
+            margin-top: -5px
+            margin-bottom: 0
+            color: $color-light
+
+@media screen and ( max-width: 576px )
+    .form-container form
+        width: 100%

@@ -4,13 +4,13 @@ header.header
         i.fa.fa-bars
     .header-menu
         form(action=routes.search, method="get").search-form
-                input(type="text", placeholder="Найти песню...", name="term")
+                input(type="text", placeholder="Найти песню...", name="term", required)
                 button(type="submit").fa.fa-search
         .header-nav
-            if !user.isAuthenticated
-                a(href=routes.join).header-item Зарегистрироваться
+            if !loggedUser
+                a(href=routes.join).header-item.button Зарегистрироваться
                 a(href=routes.login).header-item Войти
             else
                 a(href=`/tracks${routes.upload}`).header-item.button Загрузить
-                a(href=routes.userDetail(user.id)).header-item Профиль
+                a(href=routes.userDetail("/")).header-item Профиль
                 a(href=routes.logout).header-item Выйти

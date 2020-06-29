@@ -5,7 +5,7 @@ block content
         .track-header
             .container
                 .row
-                    .col-md-9
+                    .col-sm-9.order-sm-1.order-12
                         .track-header-audio
                             .track-header-controls
                                 button.track-header-play
@@ -18,11 +18,23 @@ block content
                                 .audio-controls-curr-time 0:00
                                 input(type="range", min="0", max="100").audio-controls-progress
                                 .audio-controls-duration 0:00
-                    .col-md-3
+                    .col-sm-3.order-sm-12.order-1
                         .track-header-photo
                             img(src=`/${track.imageUrl}`, alt="a")
         .track-body
-            .track-edit
-                a(href=routes.editTrack(track.id)) Редактировать
-            .track-description=track.description
-            .track-comments Комментарии
+            .container
+                .track-edit
+                    a(href=routes.editTrack(track.id)) Редактировать
+                .track-description
+                    .track-author
+                        .track-author-img
+                            img(src=`/${track.imageUrl}`, alt="User")
+                        .track-author-name Sasha228
+                    .track-description-text=track.description
+                .track-comments
+                    .comment-item
+                        .comment-item-img
+                            img(src=`/${track.imageUrl}`, alt="User")
+                        .comment-item-text
+                            .comment-author Sasha 229
+                            .comment-text Текст комментария

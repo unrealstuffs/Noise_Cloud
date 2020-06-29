@@ -1,31 +1,87 @@
-.track-detail
-    .track-header
-        background: transparent
-        background: linear-gradient(to bottom, $color-secondary, $color-background)
-        padding: 30px 0
-        .track-header-photo
+.track-header
+    background: transparent
+    background: linear-gradient(to bottom, $color-secondary, $color-background)
+    padding: 30px 0
+    .track-header-photo
+        img 
+            display: block
+            max-width: 100%
+            height: auto
+    .track-header-audio
+        display: flex
+        flex-direction: column
+        justify-content: space-between
+        align-items: flex-start
+        height: 100%
+    .track-header-controls
+        display: flex
+        button
+            margin-right: 10px
+            width: 50px
+            height: 50px
+            border-radius: 10em
+            border: none
+            outline: none
+            background-color: $color-primary
+            color: $color-white
+        .track-header-title
+            font-weight: bold
+            color: $color-white
+            font-size: 18px
+        .track-header-name
+            color: $color-light
+
+.track-body
+    .track-edit
+        margin-bottom: 10px
+        a 
+            color: $color-white
+            text-decoration: underline
+    .track-description
+        display: flex
+    .track-author
+        margin-right: 30px
+    .track-author-img
+        img
+            border-radius: 10em
+            display: block
+            width: 100px
+            height: auto
+    .track-author-name
+        color: $color-light
+    .track-description-text
+        color: $color-white
+
+.track-comments
+    margin-top: 10px
+    .comment-item
+        margin-bottom: 15px
+        display: flex
+        align-items: center
+        .comment-item-img
+            margin-right: 15px
             img 
-                width: 100%
-        .track-header-audio
-            display: flex
-            flex-direction: column
-            justify-content: space-between
-            align-items: flex-start
-            height: 100%
-        .track-header-controls
-            display: flex
-            button
-                margin-right: 10px
-                width: 50px
-                height: 50px
                 border-radius: 10em
-                border: none
-                outline: none
-                background-color: $color-primary
-                color: $color-white
-            .track-header-title
-                font-weight: bold
-                color: $color-white
-                font-size: 18px
-            .track-header-name
-                color: $color-light
+                display: block
+                width: 40px
+                height: auto
+        .comment-author
+            color: $color-light
+        .comment-text
+            color: $color-white
+
+@media screen and ( max-width: 576px )
+    .track-header
+        .track-header-audio
+            align-items: center
+        .track-header-photo
+            margin-bottom: 20px
+    .track-body
+        .track-description
+            flex-direction: column
+            align-items: center
+        .track-author
+            text-align: center
+            margin-right: 0
+        .track-description-text
+            text-align: center

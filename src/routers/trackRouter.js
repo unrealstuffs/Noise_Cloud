@@ -8,18 +8,18 @@ import {
     postEditTrack,
     deleteTrack,
 } from "../controllers/trackController";
-import { uploadTrack } from "../middlewares";
+import { uploadTrack, onlyPrivate } from "../middlewares";
 
 const trackRouter = express.Router();
 
-trackRouter.get(routes.upload, getUpload);
-trackRouter.post(routes.upload, uploadTrack, postUpload);
+trackRouter.get(routes.upload, onlyPrivate, getUpload);
+trackRouter.post(routes.upload, onlyPrivate, uploadTrack, postUpload);
 
 trackRouter.get(routes.trackDetail(), trackDetail);
 
-trackRouter.get(routes.editTrack(), getEditTrack);
-trackRouter.post(routes.editTrack(), uploadTrack, postEditTrack);
+trackRouter.get(routes.editTrack(), onlyPrivate, getEditTrack);
+trackRouter.post(routes.editTrack(), onlyPrivate, uploadTrack, postEditTrack);
 
-trackRouter.get(routes.deleteTrack(), deleteTrack);
+trackRouter.get(routes.deleteTrack(), onlyPrivate, deleteTrack);
 
 export default trackRouter;
