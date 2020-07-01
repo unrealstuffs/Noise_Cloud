@@ -12,5 +12,5 @@ header.header
                 a(href=routes.login).header-item Войти
             else
                 a(href=`/tracks${routes.upload}`).header-item.button Загрузить
-                a(href=routes.userDetail("/")).header-item Профиль
+                a(href=routes.me).header-item Профиль
                 a(href=routes.logout).header-item Выйти

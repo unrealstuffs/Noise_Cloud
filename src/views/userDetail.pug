@@ -6,10 +6,13 @@ block content
             .container
                 .user-header-info
                     .user-header-photo
-                        img(src="/uploads/tracks/99a36d489ef3b6c1a81d443884c89208", alt="Image")
-                    .user-header-name имя
+                        img(src=user.avatarUrl, alt="Image")
+                    .user-header-name=user.name
         .user-tracks
             .container
+                .user-profile-btns
+                    a(href=`/users${routes.editProfile}`) Редактировать
+                    a(href=`/users${routes.changePassword}`) Сменить пароль
                 a(href="#").user-tracks-item
                     .user-track-cover
                         img(src="/uploads/tracks/99a36d489ef3b6c1a81d443884c89208", alt="Image")
