@@ -2,6 +2,7 @@ import multer from "multer";
 import routes from "./routes";
 
 const multerTrack = multer({ dest: "uploads/tracks/" });
+const multerUser = multer({ dest: "uploads/users/" });
 
 export const localsMiddleware = (req, res, next) => {
     res.locals.siteName = "NOISECLOUD";
@@ -30,3 +31,8 @@ export const uploadTrack = multerTrack.fields([
     { name: "trackFile" },
     { name: "trackImage" },
 ]);
+
+export const uploadUser = multerUser.fields([
+    { name: "userAvatar" },
+    { name: "userImage" },
+])

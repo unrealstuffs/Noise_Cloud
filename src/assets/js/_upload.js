@@ -3,13 +3,13 @@ const trackFile = document.querySelector("#trackFile");
 const trackImage = document.querySelector("#trackImage");
 
 const userAvatar = document.querySelector("#userAvatar");
-const userBackground = document.querySelector("#userBackground");
+const userImage = document.querySelector("#userImage");
 
 const fileReturn = document.querySelector(".file-return");
 const imageReturn = document.querySelector(".image-return");
 
 const avatarReturn = document.querySelector(".avatar-return");
-const backgroundReturn = document.querySelector(".background-return");
+const userImageReturn = document.querySelector(".user-image-return");
 
 const changeInput = () => {
     if (trackFile) {
@@ -25,8 +25,8 @@ const changeInput = () => {
         userAvatar.addEventListener("change", () => {
             avatarReturn.innerHTML = userAvatar.value.slice(12);
         });
-        userBackground.addEventListener("change", () => {
-            backgroundReturn.innerHTML = userBackground.value.slice(12);
+        userImage.addEventListener("change", () => {
+            userImageReturn.innerHTML = userImage.value.slice(12);
         });
     }
 };

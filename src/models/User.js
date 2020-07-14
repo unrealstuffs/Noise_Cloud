@@ -5,7 +5,7 @@ const UserSchema = new mongoose.Schema({
     name: String,
     email: String,
     avatarUrl: String,
-    backgroundUrl: String,
+    imageUrl: String,
     comments: [
         {
             type: mongoose.Schema.Types.ObjectId,

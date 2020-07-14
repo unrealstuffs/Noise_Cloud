@@ -16,6 +16,8 @@ export const postJoin = async (req, res, next) => {
     } else {
         try {
             const user = await User({
+                avatarUrl: req.files.userAvatar[0].path,
+                imageUrl: req.files.userImage[0].path,
                 name,
                 email,
             });
@@ -66,4 +68,9 @@ export const userDetail = async (req, res) => {
 export const getEditProfile = (req, res) => {
     res.render("editProfile", { pageTitle: "Редактирование профиля" });
 };
+
+export const postEditProfile = (req, res) => {
+    console.log("a");
+}
+
 export const changePassword = (req, res) => res.send("changePassword");

@@ -3,8 +3,16 @@ extends layouts/main
 block content
     .container
         .form-container
-            form(action=routes.join, method="post")
-                input(type="text", name="name", placeholder="Никнейм",required=true)        
+            form(action=routes.join, method="post", enctype="multipart/form-data")
+                .file-upload
+                    label(for="userAvatar").button Выберите аватар
+                    input(type="file", id="userAvatar", name="userAvatar", required=true, accept="images/*")
+                    p.avatar-return
+                .file-upload
+                    label(for="userImage").button Выберите изображение
+                    input(type="file", id="userImage", name="userImage", required=true, accept="images/*")
+                    p.user-image-return
+                input(type="text", name="name", placeholder="Отображаемое имя",required=true)        
                 input(type="email", name="email", placeholder="Email",required=true)
                 input(type="password", name="password", placeholder="Пароль",required=true)
                 input(type="password", name="password2", placeholder="Подтвердите пароль",required=true)

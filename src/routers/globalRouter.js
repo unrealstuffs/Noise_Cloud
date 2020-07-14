@@ -9,12 +9,12 @@ import {
     logout,
     getMe,
 } from "../controllers/userController";
-import { onlyPublic } from "../middlewares";
+import { onlyPublic, uploadUser } from "../middlewares";
 
 const globalRouter = express.Router();
 
 globalRouter.get(routes.join, onlyPublic, getJoin);
-globalRouter.post(routes.join, onlyPublic, postJoin, postLogin);
+globalRouter.post(routes.join, onlyPublic, uploadUser, postJoin, postLogin);
 
 globalRouter.get(routes.login, onlyPublic, getLogin);
 globalRouter.post(routes.login, onlyPublic, postLogin);
