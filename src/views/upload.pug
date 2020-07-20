@@ -12,6 +12,6 @@ block content
                     label(for="trackImage").button Выберите изображение трека
                     input(type="file", id="trackImage", name="trackImage", required=true, accept=".png, .jpg, .jpeg")
                     p.image-return
-                input(type="text", placeholder="Название", name="title", required=true)
+                input(type="text", placeholder="Название", name="title", required=true, max="16")
                 textarea(name="description", placeholder="Описание", required=true)
                 input(type="submit", value="Загрузить").button

@@ -12,7 +12,7 @@ block content
                                     i.fa.fa-play
                                 .track-header-meta
                                     .track-header-title=track.title
-                                    .track-header-name Автор
+                                    a(href=routes.userDetail(track.creator.id)).track-header-name=track.creator.name
                             audio(src=`/${track.fileUrl}`)
                             .audio-controls
                                 .audio-controls-curr-time 0:00
@@ -23,13 +23,14 @@ block content
                             img(src=`/${track.imageUrl}`, alt="a")
         .track-body
             .container
-                .track-edit
-                    a(href=routes.editTrack(track.id)) Редактировать
+                if loggedUser && track.creator.id === loggedUser.id
+                    .track-edit
+                        a(href=routes.editTrack(track.id)) Редактировать
                 .track-description
                     .track-author
                         .track-author-img
-                            img(src=`/${track.imageUrl}`, alt="User")
-                        .track-author-name Sasha228
+                            img(src=`/${track.creator.avatarUrl}`, alt=`${track.creator.name}`)
+                        .track-author-name=track.creator.name
                     .track-description-text=track.description
                 .track-comments
                     .comment-item

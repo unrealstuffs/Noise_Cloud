@@ -46,7 +46,7 @@ export const logout = (req, res) => {
 
 export const getMe = async (req, res) => {
     try {
-        const user = await User.findById(req.user);
+        const user = await User.findById(req.user).populate("tracks");
         res.render("userDetail", { pageTitle: user.name, user });
     } catch (error) {
         res.redirect(routes.home);
@@ -58,9 +58,10 @@ export const userDetail = async (req, res) => {
         params: { id },
     } = req;
     try {
-        const user = await User.findById(id);
+        const user = await User.findById(id).populate("tracks");
         res.render("userDetail", { pageTitle: "User Detail", user });
     } catch (error) {
+        console.log(error)
         res.redirect(routes.home);
     }
 };
@@ -69,8 +70,41 @@ export const getEditProfile = (req, res) => {
     res.render("editProfile", { pageTitle: "Редактирование профиля" });
 };
 
-export const postEditProfile = (req, res) => {
-    console.log("a");
+export const postEditProfile = async (req, res) => {
+    const {
+        body: { name, email },
+    } = req;
+    try {
+        await User.findByIdAndUpdate(req.user.id, {
+            name,
+            email,
+        });
+        res.redirect(routes.me);
+    } catch (error) {
+        console.log(error);
+        res.redirect(routes.editProfile);
+    }
 }
 
-export const changePassword = (req, res) => res.send("changePassword");
+export const getChangePassword = (req, res) => {
+    res.render("changePassword", { pageTitle: "Сменить пароль" });
+}
+
+export const postChangePassword = async (req, res) => {
+    const {
+        body: { oldPassword, newPassword, newPassword1 }
+    } = req;
+
+    try {
+        if (newPassword !== newPassword1)  {
+            res.status(400);
+            res.redirect(`/users/${routes.changePassword}`);
+            return;
+        }
+        await req.user.changePassword(oldPassword, newPassword);
+        res.redirect(routes.me);
+    } catch (error) {
+        res.status(400);
+        res.redirect(`/users/${routes.changePassword}`);
+    }
+}
