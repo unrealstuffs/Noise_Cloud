@@ -1,5 +1,6 @@
 import routes from "../routes";
 import Track from "../models/Track";
+import Comment from "../models/Comment";
 import mp3Duration from "mp3-duration";
 
 export const home = async (req, res) => {
@@ -57,7 +58,9 @@ export const trackDetail = async (req, res) => {
         params: { id },
     } = req;
     try {
-        const track = await Track.findById(id).populate("creator");
+        const track = await Track.findById(id)
+            .populate("creator")
+            .populate({ path: "comments", populate: { path: "author" } });
         res.render("trackDetail", { pageTitle: track.title, track });
     } catch (error) {
         res.redirect(routes.home);
@@ -103,3 +106,42 @@ export const deleteTrack = async (req, res) => {
     }
     res.redirect(routes.home);
 };
+
+export const postRegisterListen = async (req, res) => {
+    const {
+        params: { id }
+    } = req;
+
+    try {
+        const track = await Track.findById(id);
+        track.listen++;
+        track.save();
+        res.status(200);
+    } catch (error) {
+        res.status(400);
+    } finally {
+        res.end();
+    }
+}
+
+export const postAddComment = async (req, res) => {
+    const {
+        params: { id },
+        body: { text },
+        user
+    } = req;
+    try {
+        const track = await Track.findById(id);
+        const newComment = await Comment.create({
+          text,
+          author: user.id
+        });
+        track.comments.push(newComment.id);
+        track.save();
+    } catch (error) {
+        console.log(error);
+        res.status(400);
+    } finally {
+        res.end();
+    }
+}

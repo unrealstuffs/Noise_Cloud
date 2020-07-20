@@ -5,6 +5,13 @@ const progressBar = document.querySelector(".audio-controls-progress");
 const currTime = document.querySelector(".audio-controls-curr-time");
 const durationTime = document.querySelector(".audio-controls-duration");
 
+const registerListen = () => {
+    const trackId = window.location.href.split("/tracks/")[1];
+    fetch(`/api/${trackId}/view`, {
+        method: "POST"
+    })
+}
+
 const handlePlayClick = () => {
     if (audioPlayer.paused) {
         audioPlayer.play();
@@ -14,6 +21,11 @@ const handlePlayClick = () => {
         buttonPlay.innerHTML = '<i class="fa fa-play"></i>';
     }
 };
+
+const handleEnded = () => {
+    audioPlayer.currentTime = 0;
+    buttonPlay.innerHTML = '<i class="fa fa-play"></i>';
+}
 
 const audioProgress = () => {
     const progress =
@@ -53,7 +65,9 @@ const init = () => {
     buttonPlay.addEventListener("click", handlePlayClick);
     audioPlayer.addEventListener("timeupdate", audioProgress);
     audioPlayer.addEventListener("loadedmetadata", setTotalTime);
+    audioPlayer.addEventListener("ended", handleEnded);
     progressBar.addEventListener("click", audioChangeTime);
+    registerListen();
 };
 
 if (trackDetail) {

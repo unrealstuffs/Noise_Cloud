@@ -12,6 +12,7 @@ import { localsMiddleware } from "./middlewares";
 import userRouter from "./routers/userRouter";
 import trackRouter from "./routers/trackRouter";
 import globalRouter from "./routers/globalRouter";
+import apiRouter from "./routers/apiRouter";
 import routes from "./routes";
 
 import "./passport";
@@ -46,5 +47,6 @@ app.use(localsMiddleware);
 app.use(routes.home, globalRouter);
 app.use(routes.users, userRouter);
 app.use(routes.tracks, trackRouter);
+app.use(routes.api, apiRouter);
 
 export default app;

@@ -26,16 +26,23 @@ block content
                 if loggedUser && track.creator.id === loggedUser.id
                     .track-edit
                         a(href=routes.editTrack(track.id)) Редактировать
+                .track-listen #{track.listen} прослушиваний
                 .track-description
                     .track-author
                         .track-author-img
                             img(src=`/${track.creator.avatarUrl}`, alt=`${track.creator.name}`)
                         .track-author-name=track.creator.name
                     .track-description-text=track.description
+                form.comment-form
+                    textarea(placeholder="Ваше сообщение")
+                    input(type="hidden", id="commentName", value=`${loggedUser.name}`)
+                    input(type="hidden", id="commentImage", value=`${loggedUser.avatarUrl}`)
+                    input(type="submit", value="Отправить").button
                 .track-comments
-                    .comment-item
-                        .comment-item-img
-                            img(src=`/${track.imageUrl}`, alt="User")
-                        .comment-item-text
-                            .comment-author Sasha 229
-                            .comment-text Текст комментария
+                    each comment in track.comments.reverse()
+                        .comment-item
+                            .comment-item-img
+                                img(src=`/${comment.author.avatarUrl}`, alt=`${comment.author.name}`)
+                            .comment-item-text
+                                .comment-author=comment.author.name
+                                .comment-text=comment.text

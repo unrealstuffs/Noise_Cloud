@@ -19,6 +19,11 @@ const TRACK_DETAIL = "/:id";
 const EDIT_TRACK = "/:id/edit";
 const DELETE_TRACK = "/:id/delete";
 
+// API
+const API = "/api";
+const REGISTER_VIEW = "/:id/view";
+const ADD_COMMENT = "/:id/comment";
+
 const routes = {
     home: HOME,
     join: JOIN,
@@ -59,6 +64,9 @@ const routes = {
             return DELETE_TRACK;
         }
     },
+    api: API,
+    registerView: REGISTER_VIEW,
+    addComment: ADD_COMMENT
 };
 
 export default routes;
