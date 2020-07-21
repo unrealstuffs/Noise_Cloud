@@ -33,16 +33,18 @@ block content
                             img(src=`/${track.creator.avatarUrl}`, alt=`${track.creator.name}`)
                         .track-author-name=track.creator.name
                     .track-description-text=track.description
-                form.comment-form
-                    textarea(placeholder="Ваше сообщение")
-                    input(type="hidden", id="commentName", value=`${loggedUser.name}`)
-                    input(type="hidden", id="commentImage", value=`${loggedUser.avatarUrl}`)
-                    input(type="submit", value="Отправить").button
+                if loggedUser && track.creator.id === loggedUser.id
+                    form.comment-form
+                        textarea(placeholder="Ваше сообщение")
+                        input(type="hidden", id="commentName", value=`${loggedUser.name}`)
+                        input(type="hidden", id="commentImage", value=`${loggedUser.avatarUrl}`)
+                        input(type="submit", value="Отправить").button
                 .track-comments
                     each comment in track.comments.reverse()
                         .comment-item
                             .comment-item-img
-                                img(src=`/${comment.author.avatarUrl}`, alt=`${comment.author.name}`)
+                                a(href=routes.userDetail(comment.author.id))
+                                    img(src=`/${comment.author.avatarUrl}`, alt=`${comment.author.name}`)
                             .comment-item-text
                                 .comment-author=comment.author.name
                                 .comment-text=comment.text

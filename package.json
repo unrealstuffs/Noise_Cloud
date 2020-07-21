@@ -3,11 +3,6 @@
     "version": "1.0.0",
     "description": "Clone of Soundcloud",
     "main": "index.js",
-    "scripts": {
-        "dev:server": "nodemon --exec babel-node src/init.js --delay 2 --ignore '.scss' --ignore 'static' --ignore 'assets'",
-        "dev:assets": "WEBPACK_ENV=development webpack -w",
-        "build:assets": "WEBPACK_ENV=production webpack"
-    },
     "author": "Sasha",
     "license": "ISC",
     "devDependencies": {
@@ -47,5 +42,17 @@
         "sass-loader": "^8.0.2",
         "webpack": "^4.43.0",
         "webpack-cli": "^3.3.11"
+    },
+    "scripts": {
+        "dev:server": "nodemon --exec babel-node src/init.js --delay 2 --ignore '.scss' --ignore 'static' --ignore 'assets'",
+        "dev:assets": "WEBPACK_ENV=development webpack -w",
+        "build:assets": "WEBPACK_ENV=production webpack",
+        "build:server": "babel src --out-dir build --ignore 'src/assets','src/static','webpack.config.js'",
+        "copyAll": "cp -R src/static build && cp -R src/views build",
+        "build": "npm run build:server && npm run build:assets && npm run copyAll",
+        "prebuild": "rm -rf build",
+        "tunnel": "lt --port 4000",
+        "start": "PRODUCTION=true node build/init.js",
+        "prestart": "npm run build"
     }
 }
