@@ -33,7 +33,7 @@ block content
                             img(src=`${track.creator.avatarUrl}`, alt=`${track.creator.name}`)
                         .track-author-name=track.creator.name
                     .track-description-text=track.description
-                if loggedUser && track.creator.id === loggedUser.id
+                if loggedUser
                     form.comment-form
                         textarea(placeholder="Ваше сообщение")
                         input(type="hidden", id="commentName", value=`${loggedUser.name}`)
