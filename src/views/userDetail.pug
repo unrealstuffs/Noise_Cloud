@@ -2,11 +2,11 @@ extends layouts/main
 
 block content
     .user-detail
-        .user-header(style=`background-image: url(../${user.imageUrl})`)
+        .user-header(style=`background-image: url(${user.imageUrl})`)
             .container
                 .user-header-info
                     .user-header-photo
-                        img(src=`../${user.avatarUrl}`, alt=`${user.name}`)
+                        img(src=user.avatarUrl, alt=`${user.name}`)
                     .user-header-name=user.name
         .user-tracks
             .container
@@ -16,12 +16,13 @@ block content
                         a(href=`/users${routes.changePassword}`) Сменить пароль
                 each item in user.tracks
                     a(href=routes.trackDetail(item.id)).user-tracks-item
+                        audio(src=item.fileUrl)
                         .user-track-cover
-                            img(src=`../${item.imageUrl}`, alt="Image")
+                            img(src=item.imageUrl, alt="Image")
                         .user-track-meta
                             .left
                                 .user-track-title=item.title
                                 .user-track-author=user.name
                             .right
-                                .user-track-duration #{Math.floor(item.duration / 60) + ":" + Math.floor(item.duration % 60)}
+                                .user-track-duration 0:00
                                 .user-track-date #{new Date(item.createdAt).getDate() + "/" + new Date(item.createdAt).getMonth() + "/" + new Date(item.createdAt).getFullYear()}

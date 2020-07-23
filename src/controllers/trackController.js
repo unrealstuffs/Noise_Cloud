@@ -1,7 +1,6 @@
 import routes from "../routes";
 import Track from "../models/Track";
 import Comment from "../models/Comment";
-import mp3Duration from "mp3-duration";
 
 export const home = async (req, res) => {
     try {
@@ -20,7 +19,7 @@ export const search = async (req, res) => {
     try {
         tracks = await Track.find({
             title: { $regex: searchingBy, $options: "i" },
-        });
+        }).populate("creator");
     } catch (error) {}
     res.render("search", { pageTitle: "Поиск", searchingBy, tracks });
 };
@@ -33,24 +32,16 @@ export const postUpload = async (req, res) => {
     const {
         body: { title, description },
     } = req;
-
-    mp3Duration(req.files.trackFile[0].path, async (err, duration) => {
-        if (err) {
-            return console.log(err.message);
-        } else {
-            const newTrack = await Track.create({
-                fileUrl: req.files.trackFile[0].path,
-                imageUrl: req.files.trackImage[0].path,
-                title,
-                description,
-                duration,
-                creator: req.user.id
-            });
-            req.user.tracks.push(newTrack.id);
-            req.user.save();
-            res.redirect(routes.trackDetail(newTrack.id));
-        }
-    })
+    const newTrack = await Track.create({
+        fileUrl: req.files.trackFile[0].location,
+        imageUrl: req.files.trackImage[0].location,
+        title,
+        description,
+        creator: req.user.id
+    });
+    req.user.tracks.push(newTrack.id);
+    req.user.save();
+    res.redirect(routes.trackDetail(newTrack.id));
 };
 
 export const trackDetail = async (req, res) => {

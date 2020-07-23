@@ -3,7 +3,7 @@ extends layouts/main
 block content
     .container
         .form-container
-            form(action=`/users${routes.editProfile}`, method="post", enctype="multipart/form-data")
+            form(action=`/users${routes.editProfile}`, method="post")
                 input(type="text", name="name", placeholder="Отображаемое имя", value=loggedUser.name)        
                 input(type="email", name="email", placeholder="Email", value=loggedUser.email)
                 input(type="submit",value="Обновить").button

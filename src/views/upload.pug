@@ -6,7 +6,7 @@ block content
             form(action=`/tracks${routes.upload}`, method="post", enctype="multipart/form-data").form-upload
                 .file-upload
                     label(for="trackFile").button Выберите файл трека
-                    input(type="file", id="trackFile", name="trackFile", required=true, accept="audio/*")
+                    input(type="file", id="trackFile", name="trackFile", required=true, accept=".mp3")
                     p.file-return
                 .file-upload
                     label(for="trackImage").button Выберите изображение трека

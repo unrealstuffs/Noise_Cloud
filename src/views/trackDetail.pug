@@ -13,14 +13,14 @@ block content
                                 .track-header-meta
                                     .track-header-title=track.title
                                     a(href=routes.userDetail(track.creator.id)).track-header-name=track.creator.name
-                            audio(src=`/${track.fileUrl}`)
+                            audio(src=`${track.fileUrl}`)
                             .audio-controls
                                 .audio-controls-curr-time 0:00
                                 input(type="range", min="0", max="100").audio-controls-progress
                                 .audio-controls-duration 0:00
                     .col-sm-3.order-sm-12.order-1
                         .track-header-photo
-                            img(src=`/${track.imageUrl}`, alt="a")
+                            img(src=`${track.imageUrl}`, alt="a")
         .track-body
             .container
                 if loggedUser && track.creator.id === loggedUser.id
@@ -30,7 +30,7 @@ block content
                 .track-description
                     .track-author
                         .track-author-img
-                            img(src=`/${track.creator.avatarUrl}`, alt=`${track.creator.name}`)
+                            img(src=`${track.creator.avatarUrl}`, alt=`${track.creator.name}`)
                         .track-author-name=track.creator.name
                     .track-description-text=track.description
                 if loggedUser && track.creator.id === loggedUser.id
@@ -44,7 +44,7 @@ block content
                         .comment-item
                             .comment-item-img
                                 a(href=routes.userDetail(comment.author.id))
-                                    img(src=`/${comment.author.avatarUrl}`, alt=`${comment.author.name}`)
+                                    img(src=`${comment.author.avatarUrl}`, alt=`${comment.author.name}`)
                             .comment-item-text
                                 .comment-author=comment.author.name
                                 .comment-text=comment.text

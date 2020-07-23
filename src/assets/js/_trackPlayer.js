@@ -60,7 +60,7 @@ const audioChangeTime = (e) => {
 };
 
 const init = () => {
-    audioPlayer.volume = 0.5;
+    audioPlayer.volume = 0.3;
     progressBar.value = 0;
     buttonPlay.addEventListener("click", handlePlayClick);
     audioPlayer.addEventListener("timeupdate", audioProgress);

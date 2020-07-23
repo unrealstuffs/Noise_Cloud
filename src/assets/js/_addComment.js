@@ -8,7 +8,7 @@ const addComment = comment => {
     item.classList.add("comment-item");
     item.innerHTML = `
         <div class="comment-item-img">
-            <img src="/${comment.image}">
+            <img src="${comment.image}">
         </div>
         <div class="comment-item-text">
             <div class="comment-author">${comment.name}</div>

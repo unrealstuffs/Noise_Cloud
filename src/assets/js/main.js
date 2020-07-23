@@ -4,3 +4,4 @@ import "./_header";
 import "./_upload";
 import "./_trackPlayer";
 import "./_addComment";
+import "./_userDetail"

@@ -8,7 +8,7 @@ import {
     postEditTrack,
     deleteTrack,
 } from "../controllers/trackController";
-import { uploadTrack, onlyPrivate } from "../middlewares";
+import { onlyPrivate, uploadTrack } from "../middlewares";
 
 const trackRouter = express.Router();
 

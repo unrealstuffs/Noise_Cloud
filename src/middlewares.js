@@ -1,8 +1,39 @@
 import multer from "multer";
+import multerS3 from "multer-s3";
+import aws from "aws-sdk";
 import routes from "./routes";
 
-const multerTrack = multer({ dest: "uploads/tracks/" });
-const multerUser = multer({ dest: "uploads/users/" });
+const s3 = new aws.S3({
+    accessKeyId: process.env.AWS_KEY,
+    secretAccessKey: process.env.AWS_PRIVATE_KEY,
+    region: "ap-northeast-1"
+})
+
+const multerTrack = multer({ 
+    storage: multerS3({
+        s3,
+        acl: "public-read",
+        bucket: "noise-cloud/tracks"
+    })
+});
+
+const multerUser = multer({
+    storage: multerS3({
+        s3,
+        acl: "public-read",
+        bucket: "noise-cloud/users",
+    }) 
+});
+
+export const uploadTrack = multerTrack.fields([
+    { name: "trackFile" },
+    { name: "trackImage" },
+]);
+
+export const uploadUser = multerUser.fields([
+    { name: "userAvatar" },
+    { name: "userImage" },
+])
 
 export const localsMiddleware = (req, res, next) => {
     res.locals.siteName = "NOISECLOUD";
@@ -26,13 +57,3 @@ export const onlyPrivate = (req, res, next) => {
         res.redirect(routes.home);
     }
 };
-
-export const uploadTrack = multerTrack.fields([
-    { name: "trackFile" },
-    { name: "trackImage" },
-]);
-
-export const uploadUser = multerUser.fields([
-    { name: "userAvatar" },
-    { name: "userImage" },
-])

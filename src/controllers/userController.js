@@ -16,8 +16,8 @@ export const postJoin = async (req, res, next) => {
     } else {
         try {
             const user = await User({
-                avatarUrl: req.files.userAvatar[0].path,
-                imageUrl: req.files.userImage[0].path,
+                avatarUrl: req.files.userAvatar[0].location,
+                imageUrl: req.files.userImage[0].location,
                 name,
                 email,
             });
@@ -59,7 +59,7 @@ export const userDetail = async (req, res) => {
     } = req;
     try {
         const user = await User.findById(id).populate("tracks");
-        res.render("userDetail", { pageTitle: "User Detail", user });
+        res.render("userDetail", { pageTitle: user.name, user });
     } catch (error) {
         console.log(error)
         res.redirect(routes.home);
